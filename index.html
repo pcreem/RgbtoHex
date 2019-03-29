@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="style.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="slidecontainer">
+    <label style="background-color:red;">R</label>
+    <input type="range" min="0" max="255" value="0" class="slider" id="red" oninput="myFunction()">
+    <label style="background-color:red;" id="rdemo">0</label>
+    <p> </p>
+    <label style="background-color:green;">G</label>
+    <input type="range" min="0" max="255" value="0" class="slider" id="green" oninput="myFunction()">
+    <label style="background-color:green;" id="gdemo">0</label>
+    <p> </p>
+    <label style="background-color:blue;">B</label>
+    <input type="range" min="0" max="255" value="0" class="slider" id="blue" oninput="myFunction()">
+    <label style="background-color:blue;" id="bdemo">0</label>
+    <p> </p>
+    <h1 id="hex">#000000</h1>
+  </div>
+
+  <script>
+    function myFunction() {
+      var x = document.getElementById("red").value;
+      document.getElementById("rdemo").innerHTML = x;
+
+      var y = document.getElementById("green").value;
+      document.getElementById("gdemo").innerHTML = y;
+
+      var z = document.getElementById("blue").value;
+      document.getElementById("bdemo").innerHTML = z;
+
+      document.body.style.backgroundColor = `rgb(${x}, ${y}, ${z})`;
+
+      var toHex = document.getElementById("hex").innerHTML = "#" + rgbToHex(x, y, z);
+
+    }
+
+    function rgbToHex(R, G, B) { return toHex(R) + toHex(G) + toHex(B) }
+
+    function toHex(n) {
+      n = parseInt(n, 10);
+      if (isNaN(n)) return "00";
+      n = Math.max(0, Math.min(n, 255));
+      return "0123456789ABCDEF".charAt((n - n % 16) / 16)
+        + "0123456789ABCDEF".charAt(n % 16);
+    }
+  </script>
+</body>
+
+</html>
